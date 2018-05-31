@@ -19,15 +19,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("6 Sise Snake");
+        primaryStage.setTitle("6 Size Snake");
+
 
         Group elements = field.getGroup();
         nodePos(elements);
 
         VBox rootNode = new VBox(elements);
         rootNode.setAlignment(Pos.TOP_LEFT);
-
-
 
         Scene scene = new Scene(rootNode);
         primaryStage.setScene(scene);
@@ -49,8 +48,6 @@ public class Main extends Application {
             s = getDirection(field.getHead().getTranslateX(),field.getHead().getTranslateY() + field.getR(),event.getSceneX(),event.getSceneY());
             field.setDirection(s);
         });
-
-        reporter.setOnMouseExited(event -> field.setDirection(Direction.E));
     }
 
    /*
