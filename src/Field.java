@@ -63,15 +63,18 @@ public class Field {
 
 
     public void move() {
-        int column = direction.getStep(snakeParts.getFirst()).getKey();
-        int row = direction.getStep(snakeParts.getFirst()).getValue();
+        int column = direction.getStep(snakeParts.getFirst()).getKey() % columnCount;
+        int row = direction.getStep(snakeParts.getFirst()).getValue() % rowCount;
+        if (row < 0) row = 9;
+        if (column < 0) column = 9;
+
         int position = column * rowCount + row;
 
         Status status = field.get(position);
 
         //loss
         if (field.get(position) == Status.WALL || field.get(position) == Status.SNAKE) {
-            System.exit(1);
+            System.exit(2);
         }
         creatSnakePart(column,row);
 
@@ -94,9 +97,9 @@ public class Field {
     }
 
     public void setWall(){
-        changeHex(2,3,Status.WALL);
-        changeHex(2,4,Status.WALL);
-        changeHex(3,3,Status.WALL);
+//        changeHex(2,3,Status.WALL);
+//        changeHex(2,4,Status.WALL);
+//        changeHex(3,3,Status.WALL);
     }
 
     public void changeHex(int column, int row, Status status){

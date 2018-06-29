@@ -15,7 +15,7 @@ public enum Direction {
             int row = x.getValue();
             column--;
             if (column % 2 == 0) row--;
-            return new Pair<>(column % columnCount,row % rowCount);
+            return new Pair<>(column ,row );
         }
     }, NE {
         @Override
@@ -24,18 +24,18 @@ public enum Direction {
             int row = x.getValue();
             column--;
             if (column % 2 == 1) row++;
-            return new Pair<>(column % columnCount,row % rowCount);
+            return new Pair<>(column ,row );
 
         }
     }, W {
         @Override
         public Pair<Integer, Integer> getStep(Pair<Integer, Integer> x) {
-            return new Pair<>(x.getKey() % columnCount,(x.getValue() - 1) % rowCount);
+            return new Pair<>(x.getKey() ,(x.getValue() - 1) );
         }
     }, E {
         @Override
         public Pair<Integer, Integer> getStep(Pair<Integer, Integer> x) {
-            return new Pair<>(x.getKey() % columnCount ,(x.getValue() + 1) % rowCount);
+            return new Pair<>(x.getKey() ,(x.getValue() + 1) );
         }
     }, SW {
         @Override
@@ -44,7 +44,7 @@ public enum Direction {
             int row = x.getValue();
             column++;
             if (column % 2 == 0) row--;
-            return new Pair<>(column % columnCount,row % rowCount);
+            return new Pair<>(column ,row );
         }
     }, SE {
         @Override
@@ -53,7 +53,7 @@ public enum Direction {
             int row = x.getValue();
             column++;
             if (column % 2 == 1) row++;
-            return new Pair<>(column % columnCount,row % rowCount);
+            return new Pair<>(column ,row );
         }
     };
 
