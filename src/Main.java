@@ -14,8 +14,6 @@ import static java.lang.Math.*;
 public class Main extends Application {
     private final int speed = 700;
     private Field field = new Field(10, 10,  20);
-//    private Field field;
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
