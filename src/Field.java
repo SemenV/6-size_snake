@@ -33,11 +33,11 @@ public class Field {
 
         //start
         createVoidField();
-        setWall();
         creatSnakePart(0,1);
         creatSnakePart(0,2);
         creatSnakePart(0,3);
-        setFeed();
+        setFeedOrWall(Status.FEED);
+        setWall(5);
     }
 
     public enum Status {
@@ -83,7 +83,7 @@ public class Field {
             changeHex(snakeParts.getLast().getKey(), snakeParts.getLast().getValue(),Status.VOID);
             snakeParts.removeLast();
         } else {
-            setFeed();
+            setFeedOrWall(Status.FEED);
         }
 
     }
@@ -96,10 +96,10 @@ public class Field {
         }
     }
 
-    public void setWall(){
-//        changeHex(2,3,Status.WALL);
-//        changeHex(2,4,Status.WALL);
-//        changeHex(3,3,Status.WALL);
+    public void setWall(int i){
+        for (int b = 0; b < i; b++)
+        setFeedOrWall(Status.WALL);
+
     }
 
     public void changeHex(int column, int row, Status status){
@@ -124,7 +124,7 @@ public class Field {
         return hexagon;
     }
 
-    public void setFeed() {
+    public void setFeedOrWall(Status status) {
         List<Pair<Integer,Integer>> voidHex = new ArrayList<>();
         for (int i = 0; i < field.size(); i++) {
             Status actual = field.get(i);
@@ -134,8 +134,8 @@ public class Field {
             }
         }
         Pair<Integer,Integer> place = voidHex.get(new Random().nextInt(voidHex.size()));
-        field.set(place.getKey() * rowCount + place.getValue(),Status.FEED);
-        changeHex(place.getKey(),place.getValue(),Status.FEED);
+        field.set(place.getKey() * rowCount + place.getValue(),status);
+        changeHex(place.getKey(),place.getValue(),status);
     }
 
     public double getR() {
